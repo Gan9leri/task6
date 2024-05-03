@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
-    private SelenideElement firstNameInput = $("#firstName"),
+    private final SelenideElement firstNameInput = $("#firstName"),
                             lastNameInput = $("#lastName"),
                             userEmailInput = $("#userEmail"),
                             genderWrapperInput = $("#genterWrapper"),
@@ -20,7 +20,9 @@ public class RegistrationPage {
                             currentAddressInput = $("#currentAddress"),
                             stateInput = $("#state"),
                             cityInput = $("#city"),
-                            submitClick = $("#submit");
+                            submitClick = $("#submit"),
+                            formWrapper = $(".practice-form-wrapper"),
+                            tableResponsive = $(".table-responsive");
 
 
     CalendarComponent calendarComponent = new CalendarComponent();
@@ -29,7 +31,7 @@ public class RegistrationPage {
 
     public RegistrationPage openPage() {
         open("/automation-practice-form");
-        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+        formWrapper.shouldHave(text("Student Registration Form"));
         return this;
     }
 
@@ -105,13 +107,12 @@ public class RegistrationPage {
     }
 
     public RegistrationPage checkResult(String key, String value) {
-        $(".table-responsive").$(byText(key)).parent()
+        tableResponsive.$(byText(key)).parent()
                 .shouldHave(text(value));
         return this;
     }
 
-    public RegistrationPage checkFormControl(){
-        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
-        return this;
+    public void checkFormControl(){
+        formWrapper.shouldHave(text("Student Registration Form"));
     }
 }
