@@ -6,7 +6,7 @@ public class FullRegistrationTests extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
 
     @Test
-    void fullRegistraion() {
+    void fullRegistration() {
         registrationPage.openPage()
                         .setFirstName("Alex")
                         .setLastName("Smith")
